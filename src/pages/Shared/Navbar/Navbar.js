@@ -1,26 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo1 from '../../../assets/logo/logo1.jpg'
+import { AuthContext } from '../../../contexts/AuthProvider';
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext)
 
     const handleLogOut = () => {
-        // logOut()
-        //     .then(() => { })
-        //     .catch(err => console.log(err));
+        logOut()
+            .then(() => { })
+            .catch(err => console.log(err));
     }
 
 
     const menuItems = <React.Fragment>
         <li><Link to="/">Home</Link></li>
-        <li><Link to="/appointment">Appointment</Link></li>
         <li><Link to="/blog">Blog</Link></li>
-        {/* {user?.uid ?
+        {user?.uid ?
             <>
                 <li><Link to="/dashboard">Dashboard</Link></li>
                 <li><button onClick={handleLogOut}>Sign out</button></li>
             </>
-            : <li><Link to="/login">Login</Link></li>} */}
+            : <li><Link to="/login">Login</Link></li>}
     </React.Fragment>
 
     return (
@@ -36,7 +37,7 @@ const Navbar = () => {
                 </div>
                 <Link to="/" className="flex justify-around">
                     <img className='h-12 w-12 bg-white' src={logo1} alt="" />
-                    <span className='btn btn-ghost normal-case text-xl'>Books shop</span>
+                    <span className='btn btn-ghost normal-case text-xl'>Bookworms</span>
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
