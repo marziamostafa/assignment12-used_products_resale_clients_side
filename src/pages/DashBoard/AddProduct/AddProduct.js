@@ -7,14 +7,14 @@ import { AuthContext } from '../../../contexts/AuthProvider';
 const AddProduct = () => {
     const { user } = useContext(AuthContext)
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const imageHosKey = '29473dd4ab78ebc95009722bc0558d38';
+    const imageHosKey = '9d6aa2076dbbb0db4cd5da13528fcb1a';
     console.log(imageHosKey)
     const navigate = useNavigate()
 
     const handleAddItem = (data) => {
         console.log(data)
 
-        const image = data.images[0];
+        const image = data.image[0];
         const fromData = new FormData();
         fromData.append('image', image);
 
@@ -49,7 +49,7 @@ const AddProduct = () => {
                     }
 
 
-                    fetch('http://localhost:5000/items', {
+                    fetch('http://localhost:5000/allbook', {
 
                         method: 'POST',
                         headers: {
@@ -64,7 +64,7 @@ const AddProduct = () => {
 
                             console.log(result)
                             toast.success('added Item successfully')
-                            navigate('/dashBoard/myProducts')
+                            navigate('/dashboard/myaddedproducts')
                         })
 
                 }
@@ -179,10 +179,10 @@ const AddProduct = () => {
 
                         <div className="form-control w-full max-w-xs">
                             <label className="label"> <span className="label-text">Photo (photo Should be png/jpg format)</span></label>
-                            <input type="file" {...register("images", {
+                            <input type="file" {...register("image", {
                                 required: 'Required'
                             })} className="input input-bordered w-full max-w-xs" />
-                            {errors.images && <p className='text-red-500'>{errors.images.message}</p>}
+                            {errors.image && <p className='text-red-500'>{errors.image.message}</p>}
                         </div>
 
                     </div>
