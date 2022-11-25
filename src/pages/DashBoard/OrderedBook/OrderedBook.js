@@ -8,7 +8,7 @@ const OrderedBook = () => {
     const { user } = useContext(AuthContext);
     const url = `http://localhost:5000/allbookings?email=${user?.email}`;
     const { data: orderList = [] } = useQuery({
-        queryKey: ['bookings', user?.email],
+        queryKey: ['allbookings', user?.email],
         queryFn: async () => {
             const res = await fetch(url, {
                 headers: {
