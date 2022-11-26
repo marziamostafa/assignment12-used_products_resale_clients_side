@@ -46,7 +46,7 @@ const MyAddedProduct = () => {
     }
 
     return (
-        <div>
+        <div className='bg-slate-200'>
             <div className='flex justify-center mb-5 mt-5'>
                 <h1 className='text-3xl'>My Added Items </h1>
             </div>
@@ -62,7 +62,7 @@ const MyAddedProduct = () => {
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className='bg-slate-200'>
 
                         {
                             products?.length && products?.map((product, index) =>
