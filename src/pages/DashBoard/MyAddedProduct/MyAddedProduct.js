@@ -57,7 +57,7 @@ const MyAddedProduct = () => {
                         <tr>
                             <th></th>
                             <th>Product</th>
-                            <th>Model Name</th>
+                            <th>Book Name</th>
                             <th>Price</th>
                             <th></th>
                         </tr>

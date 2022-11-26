@@ -30,39 +30,49 @@ const DashBoardLayout = () => {
                 <div className="drawer-content bg-slate-200">
                     <Outlet></Outlet>
                 </div>
-                <div className="drawer-side bg-slate-200">
-                    <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-
-                    <ul className="menu p-4 w-80 text-base-content">
-                        {
-                            Role === "admin" ?
-                                <>
-                                    <p className='text-2xl font-bold text-green-900'>Admin Profile</p>
-                                    {/* <li><Link to='/dashboard/addItem'>Add Item</Link></li> */}
-                                    <li><Link to='/dashboard/buyers'>All Buyers</Link></li>
-                                    <li><Link to='/dashboard/allsellers'>All Sellers</Link></li>
-                                </>
-                                :
-                                <></>
-                        }
-                        {Role === 'seller' ?
-                            <>
-                                <p className='text-2xl font-bold text-green-900'>Seller Profile</p>
-                                <li><Link to='/dashboard/addItem'>Add Item</Link></li>
-                                <li><Link to='/dashboard/myaddedproducts'>My Added Products</Link></li>
-                            </>
-                            : <></>
-                        }
-
-                        {Role === "buyer" ?
-
-                            <>
+                {
+                    user?.emailVerified ?
+                        <div className="drawer-side bg-slate-200">
+                            <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
+                            <ul className="menu p-4 w-80 text-base-content">
                                 <p className='text-2xl font-bold text-green-900'>Buyer Profile</p>
                                 <li><Link to='/dashboard/myorder'>My Orders</Link></li>
-                            </>
-                            :
-                            <></>
-                        }
+                            </ul>
+                        </div>
+                        :
+                        <div className="drawer-side bg-slate-200">
+                            <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
+
+                            <ul className="menu p-4 w-80 text-base-content">
+                                {
+                                    Role === "admin" ?
+                                        <>
+                                            <p className='text-2xl font-bold text-green-900'>Admin Profile</p>
+                                            {/* <li><Link to='/dashboard/addItem'>Add Item</Link></li> */}
+                                            <li><Link to='/dashboard/buyers'>All Buyers</Link></li>
+                                            <li><Link to='/dashboard/allsellers'>All Sellers</Link></li>
+                                        </>
+                                        :
+                                        <></>
+                                }
+                                {Role === 'seller' ?
+                                    <>
+                                        <p className='text-2xl font-bold text-green-900'>Seller Profile</p>
+                                        <li><Link to='/dashboard/addItem'>Add Item</Link></li>
+                                        <li><Link to='/dashboard/myaddedproducts'>My Added Products</Link></li>
+                                    </>
+                                    : <></>
+                                }
+
+                                {Role === "buyer" ?
+
+                                    <>
+                                        <p className='text-2xl font-bold text-green-900'>Buyer Profile</p>
+                                        <li><Link to='/dashboard/myorder'>My Orders</Link></li>
+                                    </>
+                                    :
+                                    <></>
+                                }
 
 
 
@@ -71,14 +81,15 @@ const DashBoardLayout = () => {
 
 
 
-                        {/* <li><Link to="/dashboard">My Orders</Link></li> */}
-                        {/* <li><Link to="/dashboard/allusers">All Users</Link></li> */}
-                        {/* <li><Link to="/dashboard/buyers">All Buyers</Link></li>
-                        <li><Link to="/dashboard/allsellers">All Sellers</Link></li>
-                        <li><Link to="/dashboard/addproducts">Add A Product</Link></li>
-                        <li><Link to="/dashboard/myaddedproducts">My Added Product</Link></li> */}
-                    </ul>
-                </div>
+                                {/* <li><Link to="/dashboard">My Orders</Link></li> */}
+                                {/* <li><Link to="/dashboard/allusers">All Users</Link></li> */}
+                                {/* <li><Link to="/dashboard/buyers">All Buyers</Link></li>
+                    <li><Link to="/dashboard/allsellers">All Sellers</Link></li>
+                    <li><Link to="/dashboard/addproducts">Add A Product</Link></li>
+                    <li><Link to="/dashboard/myaddedproducts">My Added Product</Link></li> */}
+                            </ul>
+                        </div>
+                }
             </div>
 
         </div>

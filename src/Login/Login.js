@@ -6,7 +6,7 @@ import useToken from '../Hooks/useToken';
 
 const Login = () => {
 
-    const { signIn } = useContext(AuthContext);
+    const { signIn, googleLogin } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [loginError, setLoginError] = useState('');
     const [loginUserEmail, setLoginUserEmail] = useState('');
@@ -35,6 +35,21 @@ const Login = () => {
             });
 
     }
+
+    const handleGoogleSignIn = () => {
+
+        googleLogin()
+            .then(result => {
+                const user = result.user;
+                navigate(from, { replace: true });
+                console.log(user);
+            })
+            .catch(error => {
+                console.error(error);
+            })
+
+    }
+
 
     return (
         <div className='h-[800px] flex justify-center items-center'>
@@ -70,7 +85,7 @@ const Login = () => {
                 </form>
                 <p>New to Doctors Portal <Link className='text-secondary' to="/signup">Create new Account</Link></p>
                 <div className="divider">OR</div>
-                <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
+                <button onClick={handleGoogleSignIn} className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
             </div>
         </div>
     );

@@ -1,11 +1,15 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../../contexts/AuthProvider';
 
 const BookModal = ({ bookList, setBookList }) => {
     const { user } = useContext(AuthContext)
 
     const { name, SellingPrice, image } = bookList;
+
+    const location = useLocation();
+    const navigate = useNavigate();
 
 
     const handleBookings = event => {
@@ -41,6 +45,7 @@ const BookModal = ({ bookList, setBookList }) => {
                 if (data.acknowledged) {
                     setBookList([]);
                     toast.success('Booked successfully')
+                    navigate('/dashboard/allusers')
                     // refetch() 
                 } else {
                     toast.error(data.message)
@@ -73,7 +78,7 @@ const BookModal = ({ bookList, setBookList }) => {
                         <input name="location" type="text" placeholder="Meeting Location" className="input w-full input-bordered" />
                         <br />
 
-                        <input className='btn btn-primary w-full' type="submit" value="Submit" />
+                        <input className='btn btn-primary w-full' type="submit" value="Book" />
                     </form>
                 </div>
             </div>

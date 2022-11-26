@@ -30,7 +30,7 @@ const OrderedBook = () => {
                         <tr>
                             <th></th>
                             <th>Image</th>
-                            <th>Name</th>
+                            <th>Book Name</th>
                             <th>Price</th>
                             <th>Payment</th>
                         </tr>
@@ -51,12 +51,18 @@ const OrderedBook = () => {
                                 <td>{ord.SellingPrice}</td>
                                 <td>
                                     {
-                                        ord.SellingPrice && <Link to={`/dashboard/payment/${ord._id}`}>
+                                        ord.SellingPrice && !ord.paid && < Link to={`/dashboard/payment/${ord._id}`}>
                                             <button className=' btn btn-primary btn-sm'>
                                                 Pay
                                             </button>
                                         </Link>
 
+                                    }
+
+                                    {
+                                        ord.SellingPrice && ord.paid && <button className=' btn btn-success btn-sm'>
+                                            Paid
+                                        </button>
                                     }
                                     {/* {
                                     order.resalePrice && <button className=' btn btn-success btn-sm'>
@@ -69,7 +75,7 @@ const OrderedBook = () => {
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div >
     );
 };
 

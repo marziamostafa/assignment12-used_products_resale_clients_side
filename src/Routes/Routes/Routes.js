@@ -9,9 +9,11 @@ import AllUsers from "../../pages/DashBoard/AllUsers/AllUsers";
 import DashHome from "../../pages/DashBoard/Home/DashHome";
 import MyAddedProduct from "../../pages/DashBoard/MyAddedProduct/MyAddedProduct";
 import OrderedBook from "../../pages/DashBoard/OrderedBook/OrderedBook";
+import Payment from "../../pages/DashBoard/Payment/Payment";
 import AllBook from "../../pages/HomePage/AllBook/AllBook";
 import Home from "../../pages/HomePage/Home/Home";
 import Blog from "../../pages/Shared/Blog/Blog";
+import DisplayError from "../../pages/Shared/DisplayError/DisplayError";
 import SignUp from "../../pages/SignUp/SignUp";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
@@ -19,7 +21,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
-        // errorElement: <DisplayError></DisplayError>,
+        errorElement: <DisplayError></DisplayError>,
         children: [
             {
                 path: '/',
@@ -43,19 +45,13 @@ const router = createBrowserRouter([
             {
                 path: '/blog',
                 element: <Blog></Blog>
-            },
-
-
-            // {
-            //     path: '/appointment',
-            //     element: <Appointment></Appointment>
-            // }
+            }
         ]
     },
     {
         path: '/dashboard',
         element: <PrivateRoute><DashBoardLayout></DashBoardLayout></PrivateRoute>,
-        // errorElement: <ErrorPage></ErrorPage>,
+        errorElement: <DisplayError></DisplayError>,
         children: [
             {
                 path: '/dashboard',
@@ -84,6 +80,14 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/myaddedproducts',
                 element: <MyAddedProduct></MyAddedProduct>
+            },
+            {
+                path: '/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: async ({ params }) => {
+                    console.log(params.id)
+                    return fetch(`http://localhost:5000/allbookings/${params.id}`)
+                }
             },
 
         ]
