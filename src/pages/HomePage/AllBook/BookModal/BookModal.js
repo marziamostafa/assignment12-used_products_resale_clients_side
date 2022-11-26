@@ -6,7 +6,7 @@ import { AuthContext } from '../../../../contexts/AuthProvider';
 const BookModal = ({ bookList, setBookList }) => {
     const { user } = useContext(AuthContext)
 
-    const { name, SellingPrice, image } = bookList;
+    const { name, SellingPrice, image, setBooked, booked } = bookList;
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -28,7 +28,7 @@ const BookModal = ({ bookList, setBookList }) => {
             phone,
             SellingPrice,
             location,
-            image
+            image,
         }
         // console.log(buyer)
 
@@ -45,7 +45,7 @@ const BookModal = ({ bookList, setBookList }) => {
                 if (data.acknowledged) {
                     setBookList([]);
                     toast.success('Booked successfully')
-                    navigate('/dashboard/allusers')
+                    navigate('/dashboard/myorder')
                     // refetch() 
                 } else {
                     toast.error(data.message)

@@ -1,8 +1,12 @@
-import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React, { useContext } from 'react';
+
 
 const AllBookCard = ({ book, setBookList }) => {
 
     const { condition, details, image, location, mobileNumber, name, buyingPrice, postTime, sellerName, SellingPrice, yearsOfUse } = book
+
+
 
     return (
         <div className="card card-compact w-96 bg-base-100 shadow-xl mb-10">
@@ -18,12 +22,16 @@ const AllBookCard = ({ book, setBookList }) => {
                 <p className='text-lg'>Seller Name : {sellerName}</p>
                 <p className='text-lg'>Number : {mobileNumber}</p>
                 <p className='text-lg'>Post Time : {postTime}</p>
+
+
+
                 <div className="card-actions justify-end">
                     <label
                         htmlFor="booking-modal"
                         className="btn btn-primary text-white"
                         onClick={() => setBookList(book)}
                     >Book Now</label>
+
                 </div>
             </div>
         </div>

@@ -18,6 +18,9 @@ const SignUp = () => {
         navigate('/');
     }
 
+
+
+
     const handleSignUp = (data) => {
         setSignUPError('');
         createUser(data.email, data.password)

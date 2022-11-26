@@ -6,7 +6,7 @@ import useToken from '../Hooks/useToken';
 
 const Login = () => {
 
-    const { signIn, googleLogin } = useContext(AuthContext);
+    const { signIn, googleLogin, updateUser } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [loginError, setLoginError] = useState('');
     const [loginUserEmail, setLoginUserEmail] = useState('');
@@ -36,13 +36,43 @@ const Login = () => {
 
     }
 
+
+    const saveUser = (name, email) => {
+        const user = { name, email };
+        // console.log(user);
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                // console.log('save user',data)
+                setLoginUserEmail(email)
+            })
+
+    }
+
+
     const handleGoogleSignIn = () => {
 
         googleLogin()
             .then(result => {
                 const user = result.user;
-                navigate(from, { replace: true });
                 console.log(user);
+                const userInfo = {
+                    displayName: user.displayName,
+                    email: user.email,
+                }
+
+                updateUser(userInfo)
+                    .then(() => {
+                        saveUser(user.displayName, user.email)
+                    })
+                    .catch(err => console.log(err));
+
             })
             .catch(error => {
                 console.error(error);
