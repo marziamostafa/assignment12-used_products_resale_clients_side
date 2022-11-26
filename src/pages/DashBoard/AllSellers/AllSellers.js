@@ -1,17 +1,41 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
+import { AuthContext } from '../../../contexts/AuthProvider';
 
 const AllSellers = () => {
+
+    const { user } = useContext(AuthContext);
+
+    const [deleteSeller, setDeleteSeller] = useState([])
+
 
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/users/allsellers`);
+            const res = await fetch('http://localhost:5000/dashboard/allsellers');
             const data = await res.json();
             return data;
         }
     });
-
+    const handleDeleteSeller = id => {
+        const proceed = window.confirm('Are you sure, want to delete this Seller?')
+        if (proceed) {
+            fetch(`http://localhost:5000/users/allsellers/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.deletedCount > 0) {
+                        toast.success('Deleted Successfully')
+                        const remaining = deleteSeller.filter(seller => seller._id !== id)
+                        setDeleteSeller(remaining)
+                        refetch()
+                    }
+                })
+        }
+    }
 
     const handleDw = id => {
         // fetch(`http://localhost:5000/users/admin/${id}`, {
@@ -50,9 +74,8 @@ const AllSellers = () => {
                                 <td>{user.email}</td>
                                 <td>{user.role}</td>
 
-                                {/* <td>{user?.role !== 'admin' && <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-xs btn-primary'>Make Admin</button>}</td> */}
 
-                                <td><button className='btn btn-xs btn-danger'>Delete</button></td>
+                                <td><button onClick={() => handleDeleteSeller(user._id)} className='btn btn-xs btn-danger'>Delete</button></td>
                             </tr>)
                         }
 
