@@ -13,7 +13,7 @@ const AllSellers = () => {
     });
 
 
-    const handleMakeAdmin = id => {
+    const handleDw = id => {
         // fetch(`http://localhost:5000/users/admin/${id}`, {
         //     method: 'PUT', 
         //     headers: {
@@ -30,7 +30,7 @@ const AllSellers = () => {
     }
     return (
         <div>
-            <h2 className="text-3xl">All Users</h2>
+            <h2 className="text-3xl">All Seller</h2>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
@@ -39,7 +39,6 @@ const AllSellers = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
-
                             <th>Delete</th>
                         </tr>
                     </thead>

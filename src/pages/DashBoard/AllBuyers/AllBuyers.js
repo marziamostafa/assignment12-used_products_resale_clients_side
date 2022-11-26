@@ -14,7 +14,7 @@ const AllBuyers = () => {
 
     return (
         <div>
-            <h2 className="text-3xl">All Users</h2>
+            <h2 className="text-3xl">All Buyer</h2>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
@@ -29,7 +29,7 @@ const AllBuyers = () => {
                     </thead>
                     <tbody>
                         {
-                            users.map((user, i) => <tr key={user._id}>
+                            users?.map((user, i) => <tr key={user._id}>
                                 <th>{i + 1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>

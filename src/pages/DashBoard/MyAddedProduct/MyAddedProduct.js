@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const MyAddedProduct = () => {
@@ -7,7 +8,10 @@ const MyAddedProduct = () => {
     const { user } = useContext(AuthContext);
     const url = `http://localhost:5000/dashBoard/allbook?email=${user.email}`
 
-    const { data: products = [] } = useQuery({
+    const [bookDelete, setBookDelete] = useState([])
+
+
+    const { data: products = [], refetch } = useQuery({
         queryKey: ['dashboard/allbook', user?.email],
         queryFn: async () => {
 
@@ -20,6 +24,26 @@ const MyAddedProduct = () => {
             return data;
         }
     })
+
+
+    const handleBookDelete = id => {
+        const proceed = window.confirm('Are you sure, want to delete this Item?')
+        if (proceed) {
+            fetch(`http://localhost:5000/dashboard/allbook/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.deletedCount > 0) {
+                        toast.success('Items Deleted Successfully')
+                        const remaining = bookDelete.filter(book => book._id !== id)
+                        setBookDelete(remaining)
+                        refetch()
+                    }
+                })
+        }
+    }
 
     return (
         <div>
@@ -47,7 +71,7 @@ const MyAddedProduct = () => {
                                     <th><img className="mask mask-circle h-24" src={product.image} alt="" /></th>
                                     <th>{product.name}</th>
                                     <th>{product.SellingPrice}</th>
-                                    <th><button className='btn btn-danger'>remove</button></th>
+                                    <th><button onClick={() => handleBookDelete(product._id)} className='btn btn-danger'>remove</button></th>
                                 </tr>
                             )
                         }
