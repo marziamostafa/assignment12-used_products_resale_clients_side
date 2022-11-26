@@ -7,7 +7,8 @@ const OrderedBook = () => {
 
     const { user } = useContext(AuthContext);
     const url = `http://localhost:5000/allbookings?email=${user?.email}`;
-    const { data: orderList = [] } = useQuery({
+
+    const { data: allbookings = [] } = useQuery({
         queryKey: ['allbookings', user?.email],
         queryFn: async () => {
             const res = await fetch(url, {
@@ -19,7 +20,7 @@ const OrderedBook = () => {
             return data;
         }
     })
-
+    console.log(allbookings)
 
     return (
         <div>
@@ -37,8 +38,8 @@ const OrderedBook = () => {
                     </thead>
                     <tbody>
                         {
-                            orderList?.length &&
-                            orderList?.map((ord, i) => <tr key={ord._id}>
+                            allbookings?.length &&
+                            allbookings?.map((ord, i) => <tr key={ord._id}>
 
                                 <th>{i + 1}</th>
                                 <td>
@@ -51,6 +52,7 @@ const OrderedBook = () => {
                                 <td>{ord.SellingPrice}</td>
                                 <td>
                                     {
+
                                         ord.SellingPrice && !ord.paid && < Link to={`/dashboard/payment/${ord._id}`}>
                                             <button className=' btn btn-primary btn-sm'>
                                                 Pay
