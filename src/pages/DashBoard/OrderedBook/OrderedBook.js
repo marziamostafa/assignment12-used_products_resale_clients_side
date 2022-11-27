@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
@@ -20,6 +21,40 @@ const OrderedBook = () => {
             return data;
         }
     })
+
+    const handleReport = id => {
+        const proceed = window.confirm('Want To Report this product?')
+        const reportProduct = allbookings.filter(prod => prod._id === id)
+        const report = reportProduct[0]
+        // console.log('report ', report)
+        if (proceed) {
+            const reportProduct = {
+                buyer: report.buyer,
+                email: report.email,
+                image: report.image,
+                SellingPrice: report.SellingPrice,
+                productName: report.productName
+            }
+            fetch('http://localhost:5000/report', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    authorization: `bearer ${localStorage.getItem('usersToken')}`
+
+                },
+                body: JSON.stringify(reportProduct)
+            })
+                .then(res => res.json())
+                .then(result => {
+                    if (result.acknowledged) {
+                        toast.success('Repoeted successfully')
+                    }
+                    else {
+                        toast.error(result.message)
+                    }
+                })
+        }
+    }
     console.log(allbookings)
 
     return (
@@ -34,6 +69,7 @@ const OrderedBook = () => {
                             <th>Book Name</th>
                             <th>Price</th>
                             <th>Payment</th>
+                            <th>Report</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -66,11 +102,14 @@ const OrderedBook = () => {
                                             Paid
                                         </button>
                                     }
-                                    {/* {
-                                    order.resalePrice && <button className=' btn btn-success btn-sm'>
-                                        Paid
-                                    </button>
-                                } */}
+
+                                </td>
+                                <td>
+
+                                    <button disabled={sessionStorage.getItem(`buttonDisable${ord._id}` || false)} onClick={() => {
+                                        handleReport(ord._id)
+                                        sessionStorage.setItem(`buttonDisable${ord._id}`, true);
+                                    }} className='btn btn-outline btn-success'>Report</button>
                                 </td>
                             </tr>)
                         }

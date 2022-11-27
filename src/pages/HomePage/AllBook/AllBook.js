@@ -7,9 +7,7 @@ const AllBook = () => {
     const books = useLoaderData();
     const [bookList, setBookList] = useState([])
 
-
-
-
+    console.log(books)
     console.log(books)
     return (
         <div>

@@ -18,9 +18,10 @@ const DashBoardLayout = () => {
         }
 
     });
-
+    console.log(users)
     const Role = users[0]?.role
 
+    console.log(Role)
 
     return (
         <div>
@@ -48,9 +49,16 @@ const DashBoardLayout = () => {
                                     Role === "admin" ?
                                         <>
                                             <p className='text-2xl font-bold text-green-900'>Admin Profile</p>
-                                            {/* <li><Link to='/dashboard/addItem'>Add Item</Link></li> */}
-                                            <li><Link to='/dashboard/buyers'>All Buyers</Link></li>
-                                            <li><Link to='/dashboard/allsellers'>All Sellers</Link></li>
+
+                                            {/* <li><Link to='/dashboard/buyers'>All Buyers</Link></li>
+
+                                            <li><Link to='/dashboard/allsellers'>All Sellers</Link></li> */}
+
+
+                                            <li><Link to='/dashboard/report'>All report</Link></li>
+
+                                            <li><Link to={'/dashboard/sellers'}>All Sellers</Link></li>
+
                                         </>
                                         :
                                         <></>
@@ -58,7 +66,7 @@ const DashBoardLayout = () => {
                                 {Role === 'seller' ?
                                     <>
                                         <p className='text-2xl font-bold text-green-900'>Seller Profile</p>
-                                        <li><Link to='/dashboard/addItem'>Add Item</Link></li>
+                                        <li><Link to='/dashboard/addproducts'>Add Item</Link></li>
                                         <li><Link to='/dashboard/myaddedproducts'>My Added Products</Link></li>
                                     </>
                                     : <></>

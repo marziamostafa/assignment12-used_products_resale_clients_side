@@ -29,6 +29,7 @@ const BookModal = ({ bookList, setBookList }) => {
             SellingPrice,
             location,
             image,
+
         }
         // console.log(buyer)
 

@@ -10,6 +10,8 @@ import DashHome from "../../pages/DashBoard/Home/DashHome";
 import MyAddedProduct from "../../pages/DashBoard/MyAddedProduct/MyAddedProduct";
 import OrderedBook from "../../pages/DashBoard/OrderedBook/OrderedBook";
 import Payment from "../../pages/DashBoard/Payment/Payment";
+import Report from "../../pages/DashBoard/Report/Report";
+import Sellers from "../../pages/DashBoard/Sellers/Sellers";
 import AllBook from "../../pages/HomePage/AllBook/AllBook";
 import Home from "../../pages/HomePage/Home/Home";
 import Blog from "../../pages/Shared/Blog/Blog";
@@ -66,8 +68,8 @@ const router = createBrowserRouter([
                 element: <AllUsers></AllUsers>
             },
             {
-                path: '/dashboard/allsellers',
-                element: <AllSellers></AllSellers>
+                path: '/dashboard/sellers',
+                element: <Sellers></Sellers>
             },
             {
                 path: '/dashboard/buyers',
@@ -88,6 +90,10 @@ const router = createBrowserRouter([
                     console.log(params.id)
                     return fetch(`http://localhost:5000/allbookings/${params.id}`)
                 }
+            },
+            {
+                path: '/dashboard/report',
+                element: <Report></Report>
             },
 
         ]
