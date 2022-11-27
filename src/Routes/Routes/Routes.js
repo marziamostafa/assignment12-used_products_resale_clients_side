@@ -13,6 +13,7 @@ import OrderedBook from "../../pages/DashBoard/OrderedBook/OrderedBook";
 import Payment from "../../pages/DashBoard/Payment/Payment";
 import Report from "../../pages/DashBoard/Report/Report";
 import Sellers from "../../pages/DashBoard/Sellers/Sellers";
+import Error from "../../pages/Error/Error";
 import AllBook from "../../pages/HomePage/AllBook/AllBook";
 import Home from "../../pages/HomePage/Home/Home";
 import Blog from "../../pages/Shared/Blog/Blog";
@@ -99,34 +100,7 @@ const router = createBrowserRouter([
 
         ]
     },
-    // {
-    //     path: '/dashboard',
-    //     element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
-    //     errorElement: <DisplayError></DisplayError>,
-    //     children: [
-    //         {
-    //             path: '/dashboard',
-    //             element: <MyAppointment></MyAppointment>
-    //         },
-    //         {
-    //             path: '/dashboard/allusers',
-    //             element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
-    //         },
-    //         {
-    //             path: '/dashboard/adddoctor',
-    //             element: <AdminRoute><AddDoctor></AddDoctor></AdminRoute>
-    //         },
-    //         {
-    //             path: '/dashboard/managedoctors',
-    //             element: <AdminRoute><ManageDoctors></ManageDoctors></AdminRoute>
-    //         },
-    //         {
-    //             path: '/dashboard/payment/:id',
-    //             element: <AdminRoute><Payment></Payment></AdminRoute>,
-    //             loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
-    //         },
-    //     ]
-    // }
+    { path: '*', element: <Error></Error> },
 ])
 
 export default router;

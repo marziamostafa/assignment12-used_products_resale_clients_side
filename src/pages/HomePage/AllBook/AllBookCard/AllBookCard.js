@@ -33,7 +33,7 @@ const AllBookCard = ({ book, setBookList }) => {
       status === 'verified' ?
       
 } */}
-                <p className='text-lg'>Seller Name : <div className='flex items-center text-cyan-700 font-medium'>{sellerName}{
+                <p className='text-lg'>Seller Name :     <div className='flex items-center text-cyan-700 font-medium'>{sellerName}{
                     status === 'verified' ?
                         <FcApproval></FcApproval> :
                         ''
