@@ -8,7 +8,7 @@ const BookModal = ({ bookList, setBookList }) => {
 
     const { name, SellingPrice, image, setBooked, booked } = bookList;
 
-    const location = useLocation();
+
     const navigate = useNavigate();
 
 

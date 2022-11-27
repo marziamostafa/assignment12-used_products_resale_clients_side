@@ -50,14 +50,11 @@ const DashBoardLayout = () => {
                                         <>
                                             <p className='text-2xl font-bold text-green-900'>Admin Profile</p>
 
-                                            {/* <li><Link to='/dashboard/buyers'>All Buyers</Link></li>
-
-                                            <li><Link to='/dashboard/allsellers'>All Sellers</Link></li> */}
-
-
                                             <li><Link to='/dashboard/report'>All report</Link></li>
 
                                             <li><Link to={'/dashboard/sellers'}>All Sellers</Link></li>
+
+                                            <li><Link to={'/dashboard/buyers'}>All Buyers</Link></li>
 
                                         </>
                                         :

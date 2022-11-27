@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import { FcApproval } from "react-icons/fc";
 
 const AddProduct = () => {
     const { user } = useContext(AuthContext)
@@ -10,6 +11,24 @@ const AddProduct = () => {
     const imageHosKey = '9d6aa2076dbbb0db4cd5da13528fcb1a';
     console.log(imageHosKey)
     const navigate = useNavigate()
+
+    const [info, setInfo] = useState([])
+    const [istatus, setStatus] = useState('')
+    useEffect(() => {
+        fetch('http://localhost:5000/dashboard/allsellers')
+            .then(res => res.json())
+            .then(data => {
+                setInfo(data)
+                const array = info.filter(dt => dt.email === user.email)
+                const vdata = array[0];
+                console.log(array)
+                console.log(vdata)
+                setStatus(vdata.status)
+            })
+    }, [user.email, info])
+    console.log(istatus)
+
+
 
     const handleAddItem = (data) => {
         console.log(data)
@@ -33,18 +52,19 @@ const AddProduct = () => {
                     const item = {
 
                         category_id: data.categoryId,
-                        name: data.name,
+                        name: user.name,
                         image: imgData.data.url,
                         location: data.location,
                         buyingPrice: data.buyingPrice,
                         SellingPrice: data.sellingPrice,
                         yearOfUse: data.yearOfUse,
                         postTime: data.postTime,
-                        seller: data.sellerName,
+                        sellerName: data.sellerName,
                         condition: data.condition,
                         mobileNumber: data.details,
                         details: data.details,
-                        email: user?.email
+                        email: user?.email,
+                        status: istatus
 
                     }
 
@@ -81,10 +101,26 @@ const AddProduct = () => {
 
                         <div className="form-control w-full max-w-xs">
                             <label className="label"> <span className="label-text">Seller Name</span></label>
-                            <input type="text" {...register("sellerName", {
-                                required: "Required"
-                            })} className="input input-bordered w-full max-w-xs" />
+                            <input
+                                type="text" {...register("sellerName", {
+                                    required: "Required"
+                                })} className="input input-bordered w-full max-w-xs" />
                             {errors.seller && <p className='text-red-500'>{errors.sellerName.message}</p>}
+                        </div>
+
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label"> <span className="label-text">status</span></label>
+                            {
+                                istatus ?
+                                    <input defaultValue={istatus} disabled type="text" {...register("status", {
+
+                                    })} className="input input-bordered w-full max-w-xs" />
+                                    :
+                                    <input defaultValue={''} disabled type="text" {...register("status", {
+                                        // required: "Required"
+                                    })} className="input input-bordered w-full max-w-xs" />
+                            }
+                            {errors.status && <p className='text-red-500'>{errors.status.message}</p>}
                         </div>
 
                         <div className="form-control w-full max-w-xs">

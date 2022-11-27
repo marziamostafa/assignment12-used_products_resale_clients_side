@@ -16,7 +16,7 @@ const Report = () => {
     console.log(reportedProduct)
 
     const handleReportDelete = id => {
-        const proceed = window.confirm('Do you want to delete this?')
+        const proceed = window.confirm('Do you want to delete this book?')
         if (proceed) {
             fetch(`http://localhost:5000/dashboard/report/${id}`, {
                 method: 'DELETE'

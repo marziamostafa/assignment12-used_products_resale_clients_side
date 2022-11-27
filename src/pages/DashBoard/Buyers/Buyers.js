@@ -1,26 +1,25 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 
 
-const AllSellers = () => {
+const Buyers = () => {
 
 
-    const [deleteSeller, setDeleteSeller] = useState([])
-
-
+    const [deleteBuyer, setDeleteBuyer] = useState([])
     const { data: users = [], refetch } = useQuery({
-        queryKey: ['users'],
+        queryKey: ['dashboard/allbuyers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/dashboard/allsellers');
+            const res = await fetch('http://localhost:5000/dashboard/allbuyers');
             const data = await res.json();
             return data;
         }
     });
-    const handleDeleteSeller = id => {
-        const proceed = window.confirm('Are you sure, want to delete this Seller?')
+
+    const handleDeleteBuyer = id => {
+        const proceed = window.confirm('Do you want to delete this Buyer?')
         if (proceed) {
-            fetch(`http://localhost:5000/users/allsellers/${id}`, {
+            fetch(`http://localhost:5000/users/allbuyers/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -28,47 +27,46 @@ const AllSellers = () => {
                     console.log(data)
                     if (data.deletedCount > 0) {
                         toast.success('Deleted Successfully')
-                        const remaining = deleteSeller.filter(seller => seller._id !== id)
-                        setDeleteSeller(remaining)
+                        const remaining = deleteBuyer.filter(buyer => buyer._id !== id)
+                        setDeleteBuyer(remaining)
                         refetch()
                     }
                 })
         }
     }
 
-
     return (
         <div>
-            <h2 className="text-3xl">All Seller</h2>
+            <h2 className="text-3xl">All Buyers</h2>
             <div className="overflow-x-auto">
                 <table className="table w-full">
+
                     <thead>
                         <tr>
-                            <th></th>
+                            <th>Sl.</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
+
                             <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            users.map((user, i) => <tr key={user._id}>
+                            users?.map((user, i) => <tr>
                                 <th>{i + 1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>{user.role}</td>
-
-
-                                <td><button onClick={() => handleDeleteSeller(user._id)} className='btn btn-xs btn-danger'>Delete</button></td>
+                                <td><button className='btn btn-xs btn-danger' onClick={() => handleDeleteBuyer(user._id)}>Delete</button></td>
                             </tr>)
                         }
 
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div >
     );
 };
 
-export default AllSellers;
+export default Buyers;

@@ -3,9 +3,10 @@ import DashBoardLayout from "../../layout/DashBoardLayout";
 import Main from "../../layout/Main";
 import Login from "../../Login/Login";
 import AddProduct from "../../pages/DashBoard/AddProduct/AddProduct";
-import AllBuyers from "../../pages/DashBoard/AllBuyers/AllBuyers";
-import AllSellers from "../../pages/DashBoard/AllSellers/AllSellers";
+
+
 import AllUsers from "../../pages/DashBoard/AllUsers/AllUsers";
+import Buyers from "../../pages/DashBoard/Buyers/Buyers";
 import DashHome from "../../pages/DashBoard/Home/DashHome";
 import MyAddedProduct from "../../pages/DashBoard/MyAddedProduct/MyAddedProduct";
 import OrderedBook from "../../pages/DashBoard/OrderedBook/OrderedBook";
@@ -73,7 +74,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/buyers',
-                element: <AllBuyers></AllBuyers>
+                element: <Buyers></Buyers>
             },
             {
                 path: '/dashboard/addproducts',
