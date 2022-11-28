@@ -15,7 +15,7 @@ const AddProduct = () => {
     const [info, setInfo] = useState([])
     const [istatus, setStatus] = useState('')
     useEffect(() => {
-        fetch('http://localhost:5000/dashboard/allsellers')
+        fetch('https://b612-used-products-resale-server-side-marziamostafa.vercel.app/dashboard/allsellers')
             .then(res => res.json())
             .then(data => {
                 setInfo(data)
@@ -69,7 +69,7 @@ const AddProduct = () => {
                     }
 
 
-                    fetch('http://localhost:5000/allbook', {
+                    fetch('https://b612-used-products-resale-server-side-marziamostafa.vercel.app/allbook', {
 
                         method: 'POST',
                         headers: {

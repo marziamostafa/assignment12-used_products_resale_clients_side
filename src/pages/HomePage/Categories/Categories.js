@@ -4,17 +4,11 @@ import CategoryCard from './CategoryCard';
 
 const Categories = () => {
 
-    // const [categories, setCategories] = useState([])
-    // useEffect(() => {
-    //     fetch('category.json')
-    //         .then(res => res.json())
-    //         .then(data => setCategories(data))
-    // }, [])
 
     const { data: categories = [] } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/categories');
+            const res = await fetch('https://b612-used-products-resale-server-side-marziamostafa.vercel.app/categories');
             const data = await res.json();
             return data;
         }

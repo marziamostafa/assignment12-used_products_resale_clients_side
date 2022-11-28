@@ -47,7 +47,7 @@ const SignUp = () => {
 
     const saveUser = (name, email, role) => {
         const user = { name, email, role };
-        fetch('http://localhost:5000/users', {
+        fetch('https://b612-used-products-resale-server-side-marziamostafa.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -103,8 +103,6 @@ const SignUp = () => {
                     {signUpError && <p className='text-red-600'>{signUpError}</p>}
                 </form>
                 <p>Already have an account <Link className='text-secondary' to="/login">Please Login</Link></p>
-                <div className="divider">OR</div>
-                <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
 
             </div>
         </div>

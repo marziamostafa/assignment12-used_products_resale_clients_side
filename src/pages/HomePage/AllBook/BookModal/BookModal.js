@@ -33,7 +33,7 @@ const BookModal = ({ bookList, setBookList }) => {
         }
         // console.log(buyer)
 
-        fetch('http://localhost:5000/allbookings', {
+        fetch('https://b612-used-products-resale-server-side-marziamostafa.vercel.app/allbookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

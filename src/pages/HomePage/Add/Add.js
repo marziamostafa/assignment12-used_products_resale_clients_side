@@ -7,14 +7,14 @@ const Add = () => {
 
     const [adds, setAdds] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:5000/makeadd')
+        axios.get('https://b612-used-products-resale-server-side-marziamostafa.vercel.app/makeadd')
             .then(data => setAdds(data.data))
     }, [])
 
     const handleDeleteAdds = id => {
         const proceed = window.confirm('Do you want to delete this add?')
         if (proceed) {
-            fetch(`http://localhost:5000/makeadd/${id}`, {
+            fetch(`https://b612-used-products-resale-server-side-marziamostafa.vercel.app/makeadd/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

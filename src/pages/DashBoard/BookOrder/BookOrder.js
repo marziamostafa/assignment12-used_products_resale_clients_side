@@ -8,7 +8,7 @@ const BookOrder = () => {
 
     const [info, setInfo] = useState([])
     useEffect(() => {
-        fetch(`http://localhost:5000/newbookings`)
+        fetch(`https://b612-used-products-resale-server-side-marziamostafa.vercel.app/newbookings`)
             .then(res => res.json())
             .then(data => {
 
@@ -27,7 +27,7 @@ const BookOrder = () => {
     const handleBookDelete = id => {
         const proceed = window.confirm('Are you sure, want to delete this Item?')
         if (proceed) {
-            fetch(`http://localhost:5000/dashboard/allbook/${id}`, {
+            fetch(`https://b612-used-products-resale-server-side-marziamostafa.vercel.app/dashboard/allbook/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -56,7 +56,7 @@ const BookOrder = () => {
                         <th>Book Name</th>
                         <th>Buyer Name</th>
                         <th>Booked/Paid</th>
-                        <th>If paid Delete book from the shop</th>
+                        {/* <th>If paid Delete book from the shop</th> */}
 
                     </tr>
                 </thead>
@@ -75,12 +75,12 @@ const BookOrder = () => {
                                     :
                                     "Booked"
                             }</td>
-                            <td>{
+                            {/* <td>{
                                 dt.paid ?
                                     <button onClick={() => handleBookDelete(dt._id)} className='btn btn-outline'>Delete</button>
                                     :
                                     <></>
-                            }</td>
+                            }</td> */}
                         </tr>)
                     }
 

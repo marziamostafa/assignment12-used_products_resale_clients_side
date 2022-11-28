@@ -43,7 +43,7 @@ const router = createBrowserRouter([
             {
                 path: '/allbook/:id',
                 loader: async ({ params }) => {
-                    return fetch(`http://localhost:5000/allbook/${params.id}`)
+                    return fetch(`https://b612-used-products-resale-server-side-marziamostafa.vercel.app/allbook/${params.id}`)
                 },
                 element: <PrivateRoute><AllBook></AllBook></PrivateRoute>
             },
@@ -91,7 +91,7 @@ const router = createBrowserRouter([
                 element: <Payment></Payment>,
                 loader: async ({ params }) => {
                     console.log(params.id)
-                    return fetch(`http://localhost:5000/allbookings/${params.id}`)
+                    return fetch(`https://b612-used-products-resale-server-side-marziamostafa.vercel.app/allbookings/${params.id}`)
                 }
             },
             {

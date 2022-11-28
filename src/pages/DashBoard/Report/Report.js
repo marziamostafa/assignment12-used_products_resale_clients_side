@@ -8,7 +8,7 @@ const Report = () => {
     const { data: reportedProduct = [], refetch } = useQuery({
         queryKey: ['dashboard/report'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/report');
+            const res = await fetch('https://b612-used-products-resale-server-side-marziamostafa.vercel.app/report');
             const data = await res.json();
             return data;
         }
@@ -18,7 +18,7 @@ const Report = () => {
     const handleReportDelete = id => {
         const proceed = window.confirm('Do you want to delete this book?')
         if (proceed) {
-            fetch(`http://localhost:5000/dashboard/report/${id}`, {
+            fetch(`https://b612-used-products-resale-server-side-marziamostafa.vercel.app/dashboard/report/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

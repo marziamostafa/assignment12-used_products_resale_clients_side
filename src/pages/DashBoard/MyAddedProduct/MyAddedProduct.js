@@ -8,7 +8,7 @@ const MyAddedProduct = () => {
 
     const navigate = useNavigate()
     const { user } = useContext(AuthContext);
-    const url = `http://localhost:5000/dashBoard/allbook?email=${user.email}`
+    const url = `https://b612-used-products-resale-server-side-marziamostafa.vercel.app/dashBoard/allbook?email=${user.email}`
 
     const [bookDelete, setBookDelete] = useState([])
 
@@ -33,7 +33,7 @@ const MyAddedProduct = () => {
     const handleBookDelete = id => {
         const proceed = window.confirm('Are you sure, want to delete this Item?')
         if (proceed) {
-            fetch(`http://localhost:5000/dashboard/allbook/${id}`, {
+            fetch(`https://b612-used-products-resale-server-side-marziamostafa.vercel.app/dashboard/allbook/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -75,7 +75,7 @@ const MyAddedProduct = () => {
                 used: advertise.yearOfUse,
                 postTime: advertise.postTime
             }
-            fetch('http://localhost:5000/makeadd', {
+            fetch('https://b612-used-products-resale-server-side-marziamostafa.vercel.app/makeadd', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

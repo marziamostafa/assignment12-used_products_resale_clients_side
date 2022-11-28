@@ -10,7 +10,7 @@ const Buyers = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ['dashboard/allbuyers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/dashboard/allbuyers');
+            const res = await fetch('https://b612-used-products-resale-server-side-marziamostafa.vercel.app/dashboard/allbuyers');
             const data = await res.json();
             return data;
         }
@@ -19,7 +19,7 @@ const Buyers = () => {
     const handleDeleteBuyer = id => {
         const proceed = window.confirm('Do you want to delete this Buyer?')
         if (proceed) {
-            fetch(`http://localhost:5000/users/allbuyers/${id}`, {
+            fetch(`https://b612-used-products-resale-server-side-marziamostafa.vercel.app/users/allbuyers/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

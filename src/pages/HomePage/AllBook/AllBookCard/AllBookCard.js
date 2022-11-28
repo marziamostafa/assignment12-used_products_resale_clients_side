@@ -12,7 +12,7 @@ const AllBookCard = ({ book, setBookList }) => {
     const [vname, setVname] = useState('')
     const [payment, setPayment] = useState('')
     useEffect(() => {
-        fetch(`http://localhost:5000/newbookings`)
+        fetch(`https://b612-used-products-resale-server-side-marziamostafa.vercel.app/newbookings`)
             .then(res => res.json())
             .then(data => {
                 setInfo(data)
