@@ -6,6 +6,7 @@ import AddProduct from "../../pages/DashBoard/AddProduct/AddProduct";
 
 
 import AllUsers from "../../pages/DashBoard/AllUsers/AllUsers";
+import BookOrder from "../../pages/DashBoard/BookOrder/BookOrder";
 import Buyers from "../../pages/DashBoard/Buyers/Buyers";
 import DashHome from "../../pages/DashBoard/Home/DashHome";
 import MyAddedProduct from "../../pages/DashBoard/MyAddedProduct/MyAddedProduct";
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
                 loader: async ({ params }) => {
                     return fetch(`http://localhost:5000/allbook/${params.id}`)
                 },
-                element: <AllBook></AllBook>
+                element: <PrivateRoute><AllBook></AllBook></PrivateRoute>
             },
             {
                 path: '/blog',
@@ -96,6 +97,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/report',
                 element: <Report></Report>
+            },
+            {
+                path: '/dashboard/bookorder',
+                element: <BookOrder></BookOrder>
             },
 
         ]

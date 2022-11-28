@@ -1,8 +1,34 @@
+# wesite name: Bookworms
 
-
+## live website link:
 
 ## admin email: marzia@gmail.com
 ## admin pass: Marzia123@
+
+
+## features
+1. In my website there is login, signin option with emai, google.
+2. this is a website for buying old books and a buyer can use it after signing up
+3. Many pages are there and also dynamic route.
+4.Only The seller can add services in my website.
+5. there is payment option after buying
+6. admin can handle buyer or seller and can see them
+
+## Technology used :
+1. React
+2. CSS
+3. Tailwind
+4. Firebase
+5. React Router Dom
+6. React Icon
+7. Express js
+8. Node js
+9. Vercel
+10. MongoDB
+11. DaisyUI
+12. axios
+13. stripe
+
 
 # Getting Started with Create React App
 

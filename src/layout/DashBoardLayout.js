@@ -65,6 +65,8 @@ const DashBoardLayout = () => {
                                         <p className='text-2xl font-bold text-green-900'>Seller Profile</p>
                                         <li><Link to='/dashboard/addproducts'>Add Item</Link></li>
                                         <li><Link to='/dashboard/myaddedproducts'>My Added Products</Link></li>
+
+                                        <li><Link to='/dashboard/bookorder'>Orders From Buyers</Link></li>
                                     </>
                                     : <></>
                                 }

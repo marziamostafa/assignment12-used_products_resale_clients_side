@@ -80,7 +80,7 @@ const OrderedBook = () => {
                                 <th>{i + 1}</th>
                                 <td>
                                     <div className="avatar">
-                                        <div className="w-24 rounded-full">
+                                        <div className="w-20 rounded-full">
                                             <img src={ord.image} alt="" />
                                         </div>
                                     </div></td>
