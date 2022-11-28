@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import AddCard from './AddCard';
 
 const Add = () => {
@@ -10,6 +11,24 @@ const Add = () => {
             .then(data => setAdds(data.data))
     }, [])
 
+    const handleDeleteAdds = id => {
+        const proceed = window.confirm('Do you want to delete this add?')
+        if (proceed) {
+            fetch(`http://localhost:5000/makeadd/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.deletedCount > 0) {
+                        toast.success('Add Deleted Successfully')
+                        const remaining = adds.filter(add => add._id !== id)
+                        setAdds(remaining)
+                        window.location.reload()
+                    }
+                })
+        }
+    }
 
     if (adds.length) {
         return (
@@ -20,6 +39,7 @@ const Add = () => {
                         adds.map(add => <AddCard
                             key={add._id}
                             add={add}
+                            handleDeleteAdds={handleDeleteAdds}
                         ></AddCard>)
                     }
                 </div>

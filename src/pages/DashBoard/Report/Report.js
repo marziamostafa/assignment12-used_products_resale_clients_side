@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 
 const Report = () => {
 
-    const [reported, deleteReported] = useState([])
+    const [reported, setDeleteReported] = useState([])
     const { data: reportedProduct = [], refetch } = useQuery({
         queryKey: ['dashboard/report'],
         queryFn: async () => {
@@ -27,7 +27,7 @@ const Report = () => {
                     if (data.deletedCount > 0) {
                         toast.success('Buyer Deleted Successfully')
                         const remaining = reported.filter(sel => sel._id !== id)
-                        deleteReported(remaining)
+                        setDeleteReported(remaining)
                         refetch()
                     }
                 })
@@ -36,7 +36,7 @@ const Report = () => {
 
     return (
         <div>
-            <h3 className="text-3xl mb-5 font-bold">Reported Product</h3>
+            <h3 className="text-3xl mb-5 font-bold text-center text-cyan-900">Reported Product</h3>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>

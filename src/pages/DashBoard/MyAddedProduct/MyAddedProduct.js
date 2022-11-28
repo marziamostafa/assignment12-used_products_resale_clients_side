@@ -51,21 +51,8 @@ const MyAddedProduct = () => {
                 })
         }
 
-        // if (button === 'Post Addvertise') {
-        //     setButton('false')
-        //     localStorage.setItem('button', 'false');
-        // }
-        // else {
-        //     setButton('Post Addvertise')
-        //     localStorage.setItem('button', 'Post Addvertise');
-        // }
-
 
     }
-
-    // useEffect(() => {
-    //     localStorage.setItem('button', button);
-    // }, [button])
 
 
     const handleMakeAdd = (id, event) => {
@@ -113,10 +100,10 @@ const MyAddedProduct = () => {
     return (
         <div className='bg-slate-200'>
             <div className='flex justify-center mb-5 mt-5'>
-                <h1 className='text-3xl'>My Added Items </h1>
+                <h1 className='text-3xl text-center font-medium text-blue-800'>My Added Books </h1>
             </div>
 
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto pr-5">
                 <table className="table w-full m">
                     <thead>
                         <tr>

@@ -32,7 +32,7 @@ const AddProduct = () => {
 
     const handleAddItem = (data) => {
         console.log(data)
-
+        alert('This may take some time. Please wait')
         const image = data.image[0];
         const fromData = new FormData();
         fromData.append('image', image);
@@ -52,7 +52,7 @@ const AddProduct = () => {
                     const item = {
 
                         category_id: data.categoryId,
-                        name: user.name,
+                        name: data.bookName,
                         image: imgData.data.url,
                         location: data.location,
                         buyingPrice: data.buyingPrice,
@@ -61,7 +61,7 @@ const AddProduct = () => {
                         postTime: data.postTime,
                         sellerName: data.sellerName,
                         condition: data.condition,
-                        mobileNumber: data.details,
+                        mobileNumber: data.mobileNumber,
                         details: data.details,
                         email: user?.email,
                         status: istatus
@@ -133,10 +133,10 @@ const AddProduct = () => {
 
                         <div className="form-control w-full max-w-xs">
                             <label className="label"> <span className="label-text">Book Name</span></label>
-                            <input type="text" {...register("name", {
+                            <input type="text" {...register("bookName", {
                                 required: "Required"
                             })} className="input input-bordered w-full max-w-xs" />
-                            {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                            {errors.bookName && <p className='text-red-500'>{errors.bookName.message}</p>}
                         </div>
 
                         <div className="form-control w-full max-w-xs">
@@ -165,9 +165,9 @@ const AddProduct = () => {
 
                         <div className="form-control w-full max-w-xs">
                             <label className="label"> <span className="label-text">Details</span></label>
-                            <input type="text" {...register("details", {
+                            <textarea type="text" {...register("details", {
                                 required: "Required"
-                            })} className="input input-bordered w-full max-w-xs" />
+                            })} className="input input-bordered w-full max-w-xs textarea" />
                             {errors.details && <p className='text-red-500'>{errors.details.message}</p>}
                         </div>
 
@@ -222,7 +222,7 @@ const AddProduct = () => {
                         </div>
 
                     </div>
-                    <input className='btn btn-primary w-full mt-4' value="Add" type="submit" />
+                    <input className='btn btn-primary btn-outline w-full mt-4' value="Add" type="submit" />
                 </form>
             </div>
         </div>

@@ -11,7 +11,8 @@ const AllBook = () => {
     console.log(books)
     console.log(books)
     return (
-        <div>
+        <div className='my-8'>
+            <h2 className="text-3xl text-center font-medium text-blue-800 my-4">All Books</h2>
             <div className='grid lg:grid-cols-3 md:grid-cols-2'>
                 {
                     books.map(book => <AllBookCard

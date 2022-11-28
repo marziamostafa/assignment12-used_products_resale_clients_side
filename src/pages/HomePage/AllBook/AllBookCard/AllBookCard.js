@@ -25,28 +25,35 @@ const AllBookCard = ({ book, setBookList }) => {
                 <p className="card-title font-bold text-2xl">{name}</p>
                 <p className='text-lg'>Details: {details}</p>
                 <p className='text-lg'> Condition: {condition}</p>
-                <p className='text-lg'> Location: {location}</p>
-                <p className='text-lg'> Original Price: {buyingPrice} Taka</p>
-                <p className='text-lg'>Selling Price : {SellingPrice} Taka</p>
                 <p className='text-lg' >YearsOfUse : {yearsOfUse} Years</p>
-                {/* {
-      status === 'verified' ?
-      
-} */}
-                <p className='text-lg'>Seller Name :     <div className='flex items-center text-cyan-700 font-medium'>{sellerName}{
-                    status === 'verified' ?
-                        <FcApproval></FcApproval> :
-                        ''
-                }</div></p>
-                <p className='text-lg'>Number : {mobileNumber}</p>
-                <p className='text-lg'>Post Time : {postTime}</p>
+                <p className='text-lg'>Selling Price : {SellingPrice} Taka</p>
+                <p className='text-lg'> Original Price: {buyingPrice} Taka</p>
+                <p className='text-lg'> Location: {location}</p>
+
+
+                <div className="card bg-neutral text-neutral-content">
+                    <div className="card-body items-center text-center">
+                        <h2 className="card-title">Sellers Info</h2>
+
+                        <p className='text-lg'>Seller Name :     <div className='flex items-center text-cyan-700 font-medium'>{sellerName}{
+                            status === 'verified' ?
+                                <FcApproval></FcApproval> :
+                                ''
+                        }</div></p>
+
+                        <p className='text-lg'>Number : {mobileNumber}</p>
+                        <p className='text-lg'>Post Time : {postTime}</p>
+                    </div>
+                </div>
 
 
 
-                <div className="card-actions justify-end">
+
+
+                <div className="card-actions justify-center">
                     <label
                         htmlFor="booking-modal"
-                        className="btn btn-primary text-white"
+                        className="btn btn-primary text-white "
                         onClick={() => setBookList(book)}
                     >Book Now</label>
 
